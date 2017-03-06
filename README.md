@@ -40,13 +40,15 @@ Get the test.png, returns 200 status code on success, otherwise 404.
 
 Upload or post an image to the server. You can use any kind of clients to do this, but must pay 
 attention to these:
-
+* Authorization:  `Bearer sign`, sign = `crypto.createHash('md5').update('5173jhlc'+ options.authKey[0]).digest('hex')`
 * Content-Type: multipart/form-data
 * Supported Image types: refer the `config/options.js` for supported image types
 
 Returns a JSON array contains the upload image names with files key.
 
 `Delete /images/test.png`
+You must pay attention to these:
+* Authorization:  `Bearer sign`, sign = `crypto.createHash('md5').update('5173jhlc'+ options.authKey[0]).digest('hex')`
 
 Delete the test.png and related images. Returns `{success: true}` otherwise `{success: false}`.
 
