@@ -4,7 +4,7 @@ var http = require('http'),
     should = require('chai').should(),
     request = require('request'),
     fs = require('fs'),
-    requestHandler = require('../lib/_request_handler');
+    requestHandler = require('../lib/requestHandler');
 
 describe('server.test.js', function () {
 

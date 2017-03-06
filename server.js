@@ -1,4 +1,4 @@
-var requestHandler = require('./lib/_request_handler'),
+var requestHandler = require('./lib/requestHandler'),
     options = require('./config/options'),
     port = process.env.PORT || 8888;
 

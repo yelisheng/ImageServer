@@ -1,27 +1,31 @@
 var path = require('path'),
+    fs = require('fs'),
+    moment = require('moment'),
     basePath = path.resolve(__dirname, '..');
 
+var safeDir = (dir) => {
+   if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+      }
+  return dir;
+}   
+
 module.exports = {
-  tmpDir: basePath + '/tmp',
-  publicDir: basePath + '/public',
-  uploadDir: basePath + '/public/images',
-  uploadUrl: '/images/',
+  tmpDir: safeDir(basePath + '/tmp'),
+  publicDir: safeDir(basePath + '/public'),
+  uploadBaseDir: safeDir(basePath + '/public/images'),
+  uploadBaseUrl: '/images/',
   minFileSize: 1,
-  maxFileSize: 10485760, // 10MB
-  maxPostSize: 10485760, // 10MB
+  maxFileSize: 1048576000, // 10MB
+  maxPostSize: 1048576000, // 10MB
   acceptFileTypes: /.+/i,
   imageTypes: /\.(gif|jpe?g|png|bmp|swf)$/i,
-  imageVersions: {
-    'thumbnails': {
-      width: 80,
-      height: 80
-    }
-  },
   accessControl: {
     allowOrigin: '*',
     allowMethods: 'OPTIONS, HEAD, GET, POST, PUT, DELETE',
-    allowHeaders: 'Content-Type, Content-Range, Content-Disposition'
+    allowHeaders: 'Content-Type, Content-Range, Content-Disposition, Authorization'
   },
+  authKey :['wf', 'kf'],
   /*
   ssl: {
     key: '',
